@@ -163,7 +163,9 @@ Lib.Hogeという名前の型だという情報しか展開されなくなる！
 
 ## おまけ
 https://github.com/tsukimizake/elm-compiler 
+
 elm-compilerを小改造してelmiを人間が読める形でdumpする機能をつけたもの
+
 `cabal v2-exec elm -- --dump-elmi  ~/elm-test-proj/elm-stuff/0.19.1/Main.elmi` のように使用するとモジュールの型情報を吐く
 
 
