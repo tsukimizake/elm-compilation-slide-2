@@ -100,6 +100,9 @@ hoge = 1
 ```
 
 #### 大きなレコードをOpaque Typeにする
+
+https://discourse.elm-lang.org/t/some-advice-on-elm-compile-performance/604 より
+
 上の例と同様のHoge,Hugaで二重のtype aliasをLibモジュールで定義した場合
 ```elm
 module Main exposing (..)
