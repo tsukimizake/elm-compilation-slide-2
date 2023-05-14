@@ -18,7 +18,7 @@ type alias Three a = {p: a, q: a, r: a}
 var: Three Int
 ```
 
-コンパイラ内部ではこう
+コンパイラ内部ではこう、elmiでのバイナリエンコードも多少圧縮してあるが意味としては同じ
 ```
   (TAlias 
     (Canonical {_package = Name {_author = author, _project = project}, _module = Main})
