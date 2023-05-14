@@ -158,25 +158,6 @@ Lib.Hogeという名前の型だという情報しか展開されなくなる！
   (TType (Canonical {_package = Name {_author = author, _project = project}, _module = Lib}) Hoge []))
 ```
 
-(たくさん使われていたデータ構造型をOpaque Typeにしてみたところさらに20%~30%ほど改善した)
-
-### 前回のコードで何が起きていたか　再現実験あまりにもめんどいのでたぶん消す
-
-```elm
-type alias PageModule urlParams model msg outerMsg =
-    { init : Shared -> urlParams -> ( HasShared model, Cmd msg )
-    , update : msg -> HasShared model -> ( HasShared model, Cmd msg )
-    , subscriptions : HasShared model -> Sub msg
-    , subscribeToSharedUpdate : HasShared model -> ( HasShared model, Cmd msg )
-    , view : (msg -> outerMsg) -> HasShared model -> Browser.Styled.Document outerMsg
-    }
-    
-type alias HasShared model =
-    { model | shared : Shared }
-```
-
-Sharedレコードが一度使われるごとに約400kbの型定義がelmiファイルに吐かれる。msgやouterMsgはちゃんと見ていないけれどそこまでではないはず
-
 ## おまけ
 https://github.com/tsukimizake/elm-compiler 
 elm-compilerを小改造してelmiを人間が読める形でdumpする機能をつけたもの
