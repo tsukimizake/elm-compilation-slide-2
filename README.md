@@ -29,6 +29,7 @@ var: Three Int
 ```
 
 シンタックスを目に優しくするとだいたいこう
+エイリアス名、エイリアスの型引数、展開後の型が全部ベタ書きされている
 ```
 TAlias (author.project.Main.Three)
   [(a, elm.core.Basics.Int[])]
@@ -39,7 +40,8 @@ TAlias (author.project.Main.Three)
    ])
 ```
 
-Intでなく巨大なレコードが渡ると？
+Intでなく巨大なレコードが渡ると、elmのコード上では `Three Record` と書いているだけで内部では型が4回展開される。
+これが何重にも重なると大変よろしくないことに
 ```
 TAlias (author.project.Main.Three)
   [(a, {VERY_BIG_RECORD})]
@@ -49,9 +51,6 @@ TAlias (author.project.Main.Three)
    ,(r, {VERY_BIG_RECORD})
    ])
 ```
-
-elmのコード上では `Three Record` と書いているだけで内部ではRecordが4回展開される
-
 
 ### elmコード上でできる対処
 #### 無意味なtype aliasを噛ませない
