@@ -161,7 +161,7 @@ Lib.Hogeという名前の型だという情報しか展開されなくなる！
   (TType (Canonical {_package = Name {_author = author, _project = project}, _module = Lib}) Hoge []))
 ```
 
-プロジェクト内でたくさん使われていたデータ構造の型をOpaque Typeにすることで、前回からさらに20〜30%ほどコンパイル時間が改善した
+プロジェクト内でたくさん使われていたデータ構造の型をOpaque Typeにすることで前回からさらに20〜30%ほどコンパイル時間が改善した
 
 ## 一行でまとめ
 
