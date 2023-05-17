@@ -161,8 +161,72 @@ Lib.Hogeという名前の型だという情報しか展開されなくなる！
   (TType (Canonical {_package = Name {_author = author, _project = project}, _module = Lib}) Hoge []))
 ```
 
-プロジェクト内でたくさん使われていたデータ構造の型をOpaque Typeにすることで前回からさらに20〜30%ほどコンパイル時間が改善した
+## 劇的ビフォーアフター
 
+SPAの各ページで共有されるSharedデータ型がelmi上で500kbになるところまで太っていてこれが主な原因であるということまで突き止めたため、これをOpaque Type化した。
+
+### ビフォー
+```
+Success! Compiled 515 modules.
+
+    AdminApp ───> /tmp/adminapp.js
+
+  51,393,437,512 bytes allocated in the heap
+  10,860,466,032 bytes copied during GC
+   4,068,292,856 bytes maximum residency (8 sample(s))
+      11,589,384 bytes maximum slop
+            3879 MB total memory in use (0 MB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0        17 colls,     0 par   28.301s  33.395s     1.9644s    8.0567s
+  Gen  1         8 colls,     0 par   17.776s  21.548s     2.6935s    10.8063s
+
+  TASKS: 60 (1 bound, 59 peak workers (59 total), using -N16)
+
+  SPARKS: 0(0 converted, 0 overflowed, 0 dud, 0 GC'd, 0 fizzled)
+
+  INIT    time    0.012s  (  0.027s elapsed)
+  MUT     time   52.212s  (  9.845s elapsed)
+  GC      time   46.077s  ( 54.943s elapsed)
+  EXIT    time    0.001s  (  0.007s elapsed)
+  Total   time   98.302s  ( 64.821s elapsed)
+
+  Alloc rate    984,315,939 bytes per MUT second
+
+  Productivity  53.1% of total user, 15.2% of total elapsed
+
+```
+### アフター
+
+```
+Success! Compiled 519 modules.
+
+    AdminApp ───> /tmp/adminapp.js
+
+   8,834,810,432 bytes allocated in the heap
+      30,342,376 bytes copied during GC
+     149,273,496 bytes maximum residency (3 sample(s))
+       1,741,928 bytes maximum slop
+             142 MB total memory in use (0 MB lost due to fragmentation)
+
+                                     Tot time (elapsed)  Avg pause  Max pause
+  Gen  0         3 colls,     0 par    0.741s   0.793s     0.2645s    0.3971s
+  Gen  1         3 colls,     0 par    0.315s   0.389s     0.1297s    0.3328s
+
+  TASKS: 60 (1 bound, 59 peak workers (59 total), using -N16)
+
+  SPARKS: 0(0 converted, 0 overflowed, 0 dud, 0 GC'd, 0 fizzled)
+
+  INIT    time    0.012s  (  0.028s elapsed)
+  MUT     time    8.826s  (  3.310s elapsed)
+  GC      time    1.056s  (  1.183s elapsed)
+  EXIT    time    0.001s  (  0.009s elapsed)
+  Total   time    9.895s  (  4.529s elapsed)
+
+  Alloc rate    1,000,987,575 bytes per MUT second
+
+  Productivity  89.2% of total user, 73.1% of total elapsed
+```
 ## 一行でまとめ
 
 ごついレコードをOpaque Typeにするとコンパイル時間が改善します
