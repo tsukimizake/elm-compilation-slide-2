@@ -104,6 +104,14 @@ hoge = 1
 https://discourse.elm-lang.org/t/some-advice-on-elm-compile-performance/604 より
 
 上の例と同様のHoge,Hugaで二重のtype aliasをLibモジュールで定義した場合
+
+```elm
+module Lib exposing(Hoge)
+
+type alias Hoge = Huga Int
+type alias Huga a = a
+```
+
 ```elm
 module Main exposing (..)
 import Lib exposing(..)
@@ -112,12 +120,7 @@ hoge : Hoge
 hoge = 1
 ```
 
-```elm
-module Lib exposing(Hoge)
 
-type alias Hoge = Huga Int
-type alias Huga a = a
-```
 
 ```hs
 (hoge,
