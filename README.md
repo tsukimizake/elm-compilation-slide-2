@@ -99,9 +99,10 @@ hoge = 1
       ))
 ```
 
-#### 大きなレコードをOpaque Typeにする
+#### 大きなレコードをCustom Typeに包む
 
-https://discourse.elm-lang.org/t/some-advice-on-elm-compile-performance/604 より
+https://discourse.elm-lang.org/t/some-advice-on-elm-compile-performance/604 より。
+この記事ではOpaque Typeにするといいと書いてあるが、実は通常のCustom Typeでも同様の効果がある。
 
 上の例と同様のHoge,Hugaで二重のtype aliasをLibモジュールで定義した場合
 
@@ -166,7 +167,7 @@ Lib.Hogeという名前の型だという情報しか展開されなくなる！
 
 ## 劇的ビフォーアフター
 
-SPAの各ページで共有されるSharedデータ型がelmi上で500kbになるところまで太っていてこれが主な原因であるということまで突き止めたため、これをOpaque Type化した。
+SPAの各ページで共有されるSharedデータ型がelmi上で500kbになるところまで太っていてこれが主な原因であるということまで突き止めたため、これをCustom Type化した。
 
 ### ビフォー
 ```
@@ -232,7 +233,7 @@ Success! Compiled 519 modules.
 ```
 ## 一行でまとめ
 
-ごついレコードをOpaque Typeにするとコンパイル時間が改善します
+ごついレコードをCustom Typeにするとコンパイル時間が改善します
 
 ## おまけ
 https://github.com/tsukimizake/elm-compiler 
