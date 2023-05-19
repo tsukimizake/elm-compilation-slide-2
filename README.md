@@ -233,7 +233,7 @@ Success! Compiled 519 modules.
 ```
 ## 一行でまとめ
 
-ごついレコードをCustom Typeにするとコンパイル時間が改善します
+ごついレコードをCustom Typeに包むとコンパイル時間が改善します
 
 ## おまけ
 https://github.com/tsukimizake/elm-compiler 
