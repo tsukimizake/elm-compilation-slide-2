@@ -102,6 +102,7 @@ hoge = 1
 #### 大きなレコードをCustom Typeに包む
 
 https://discourse.elm-lang.org/t/some-advice-on-elm-compile-performance/604 より。
+
 この記事ではOpaque Typeにするといいと書いてあるが、実は通常のCustom Typeでも同様の効果がある。
 
 上の例と同様のHoge,Hugaで二重のtype aliasをLibモジュールで定義した場合
